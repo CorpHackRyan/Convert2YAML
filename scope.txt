@@ -7,32 +7,30 @@ The goals are three fold:
     verify your ability to work remotely
 
 Meta Requirements:
-
-    code must be in github, in a private repo
-    unit tests
-        if possible.  don't sweat it if the tests take you above the eight hour mark
-    a README explaining how to run/test/verify the code
-
+    [X] Code must be in github, in a private repo
+    [ ] Unit tests
+    [ ] A README explaining how to run/test/verify the code
 
 Actual requirements:
-    the script should take two cmd-line parameters:
-
-        1. the path to the input CSV file itself
-        2. the path to the YAML output file
+    The script should take two cmd-line parameters:
+        - the path to the input CSV file itself
+        - the path to the YAML output file
 
     See attached CSV file.  It's a real, anonymized subset of our real data set in FNMA
-        it's a description of some pieces of software, but the specific contents don't really matter for this assignment
-    write a Python script to convert the file to YAML
-        basically, for each software asset (i.e., each row), the columns should become a field in the YAML
-    output YAML should something like (doesn't have to be exact):
+    It's a description of some pieces of software, but the specific contents don't really matter for this assignment
 
-        - Asset ID: MSR012312
-          Asset Name: QRM-AWS
-          Asset Code: FRF
-          other fields: ....
-        - Asset ID: MSR02341
-          Asset Name: Multifamily Negotiated Txs
-          other fields
+    Write a Python script to convert the file to YAML
+
+    Basically, for each software asset (i.e., each row),
+        -> the columns should become a field in the YAML
+        -> Output YAML should something like (doesn't have to be exact):
+            - Asset ID: MSR012312
+              Asset Name: QRM-AWS
+              Asset Code: FRF
+              other fields: ....
+            - Asset ID: MSR02341
+              Asset Name: Multifamily Negotiated Txs
+              other fields
 
 Make sense?
 
