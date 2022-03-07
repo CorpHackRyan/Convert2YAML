@@ -1,0 +1,41 @@
+Good afternoon, Ryan, pleasure speaking with you.  Just to re-iterate, this is compensated homework at $50.
+I hope you don't spend more than eight hours on it (excluding bonus points int this time estimate).
+The goals are three fold:
+
+    evaluate your ability to learn new technologies
+    see what questions you ask
+    verify your ability to work remotely
+
+Meta Requirements:
+
+    code must be in github, in a private repo
+    unit tests
+        if possible.  don't sweat it if the tests take you above the eight hour mark
+    a README explaining how to run/test/verify the code
+
+
+Actual requirements:
+    the script should take two cmd-line parameters:
+
+        1. the path to the input CSV file itself
+        2. the path to the YAML output file
+
+    See attached CSV file.  It's a real, anonymized subset of our real data set in FNMA
+        it's a description of some pieces of software, but the specific contents don't really matter for this assignment
+    write a Python script to convert the file to YAML
+        basically, for each software asset (i.e., each row), the columns should become a field in the YAML
+    output YAML should something like (doesn't have to be exact):
+
+        - Asset ID: MSR012312
+          Asset Name: QRM-AWS
+          Asset Code: FRF
+          other fields: ....
+        - Asset ID: MSR02341
+          Asset Name: Multifamily Negotiated Txs
+          other fields
+
+Make sense?
+
+Bonus points for being able to do the same thing with the Excel file (.xlsx) as well as the csv.
+
+Please don't hesitate to reach out if you have any questions.
