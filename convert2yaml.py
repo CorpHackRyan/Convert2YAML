@@ -1,30 +1,34 @@
-# Things to test for:
-# [ ] verify that there is 2 inputs given at command line, if not, specify you need 2 required
-# [ ] verify first path is valid
-# [ ] verify second path is valid
-# [ ] each path must be specific '/'
-
 import os.path
 import sys
 
-print('Name of script', sys.argv[0])  # Script name is always at 0
+# Things to test for:
+# [x] verify that there is 2 inputs given at command line, if not, specify you need 2 required
+# [x] verify first path is valid
+# [x] verify second path is valid
+# [x] each path must be specific '/'
+# [ ] write automated tests/unit testing
 
 # Ensure 2 arguments are passed into program
 if len(sys.argv) < 3:
     print('\n***ERROR*** 2 arguments are required.\n')
-    print('Argument 1: the path to the input CSV file itself')
-    print('Argument 2: the path to the YAML output file')
-    print('Exiting...')
+    print('required: Argument 1: the path to the input CSV file itself')
+    print('required: Argument 2: the path to the YAML output file\n')
+    print('Quietly terminating myself.....')
     sys.exit()
 
 # Verify the paths that were passed are valid:
 # (parameter 1 is path to csv file, parameter 2 is path to output yaml file to)
-csv_path = os.path.isdir(sys.argv[1])
-print(csv_path)
+if not (os.path.isdir(sys.argv[1])):
+    print(sys.argv[1], ' is not a valid path.\nQuietly terminating myself...')
+    sys.exit()
 
-head, tail = os.path.split(sys.argv[2])
+if not(os.path.isdir(sys.argv[2])):
+    print(sys.argv[2], ' is not a valid path.\nQuietly terminating myself...')
+    sys.exit()
+
+head, tail = os.path.split(sys.argv[2])  # head yields' filename from path
 yaml_out_path = os.path.isdir(head)
-print(head, 'printing head from path input split')
+
 print(yaml_out_path)
 
 
