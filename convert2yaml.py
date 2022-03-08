@@ -1,5 +1,6 @@
 import os.path
 import sys
+import re
 
 # Things to test for:
 # [x] verify that there is 2 inputs given at command line, if not, specify you need 2 required
@@ -17,19 +18,36 @@ if len(sys.argv) < 3:
     sys.exit()
 
 # Verify the paths that were passed are valid:
-# (parameter 1 is path to csv file, parameter 2 is path to output yaml file to)
-if not (os.path.isdir(sys.argv[1])):
-    print(sys.argv[1], ' is not a valid path.\nQuietly terminating myself...')
+# (sys.arg[] parameter 1 is path to csv input file, parameter 2 is path + filename to output yaml file to)
+if not (os.path.isfile(sys.argv[1])):
+    print(sys.argv[1], ' is not a valid filename.\nQuietly terminating myself...')
     sys.exit()
 
-if not(os.path.isdir(sys.argv[2])):
-    print(sys.argv[2], ' is not a valid path.\nQuietly terminating myself...')
+out_path, out_file = os.path.split(sys.argv[2])  # head will return path only, tail will return filename from given path
+yaml_out_path = os.path.isdir(out_path)
+
+if not(os.path.isdir(out_path)):
+    print(out_path, ' is not a valid path.\nQuietly terminating myself...')
     sys.exit()
 
-head, tail = os.path.split(sys.argv[2])  # head yields' filename from path
-yaml_out_path = os.path.isdir(head)
+# Verify filename input is valid. Obviously not perfect as system chaining operators will override the input, but you
+# get the idea of where my head is at.
 
-print(yaml_out_path)
+match = re.search(r'[#<$+%>!`&*|{?=}/:r"\"@^]', out_file)
+
+if match is not None:
+    print(match.group(), 'is not a valid character for a filename.\nQuietly terminating myself...')
+    sys.exit()
+
+
+
+
+
+
+
+
+
+
 
 
 
