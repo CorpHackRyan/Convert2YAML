@@ -1,4 +1,4 @@
-##.CSV & .XLSX to YAML converter
+.CSV & .XLSX to YAML converter
 
 ## Table of contents
 * [General info](#general-info)
