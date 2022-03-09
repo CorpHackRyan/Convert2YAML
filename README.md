@@ -1,4 +1,4 @@
-#.CSV & .XLSX to YAML converter
+##.CSV & .XLSX to YAML converter
 
 ## Table of contents
 * [General info](#general-info)
@@ -10,7 +10,8 @@ Simple command line tool that takes exactly 2 arguments from the command line an
 
 ## How to use
 From the command line: <br>
-```python convert2yaml.py {/path/to/name_of_csv_input_file.csv} {/path/to/output_yaml_file.yaml}```
+```python convert2yaml.py {/path/to/name_of_csv_input_file.csv} {/path/to/output_yaml_file.yaml}```<br>
+
 
 ## Setup
 This script uses Pythons standard libraries that are bundled with the core Python distribution. You will need at least Python 3.9 installed on your system to ensure compatability. 
