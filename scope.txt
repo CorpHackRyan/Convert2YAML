@@ -1,11 +1,11 @@
 HOURS LOGGED:
 3/7 - 1 hour
 3/8 - 2 hours
-3/9 - 2 hours
+3/9 - 2.5 hours
 
 Good afternoon, Ryan, pleasure speaking with you.  Just to re-iterate, this is compensated homework at $50.
 I hope you don't spend more than eight hours on it (excluding bonus points int this time estimate).
-The goals are three fold:
+The goals are three-fold:
 
     evaluate your ability to learn new technologies
     see what questions you ask
@@ -14,7 +14,7 @@ The goals are three fold:
 Meta Requirements:
     [X] Code must be in github, in a private repo
     [ ] Unit tests
-    [ ] A README explaining how to run/test/verify the code
+    [X] A README explaining how to run/test/verify the code
 
 Actual requirements:
     The script should take two cmd-line parameters:

@@ -74,6 +74,7 @@ with open(sys.argv[1], mode='r') as csv_file:
     print(f'Total record entries:    {len(each_row)}\n')
 
     with open(sys.argv[2], mode='w') as yaml_out_file:
+        yaml_out_file.write('---\n')
         for idx, row_data in enumerate(each_row):
             if len(row_data) != len(header):
                 print(f'******** Potential error or data missing in row {idx+1}. Only {len(row_data)} values found - '
@@ -84,7 +85,13 @@ with open(sys.argv[1], mode='r') as csv_file:
             else:
                 print(f'processing {row_data}')
                 #print(len(row_data))
-                yaml_out_file.write(''.join(row_data) + '\n')
+                #yaml_out_file.write(''.join(row_data) + '\n')
+                for idx2 in range(len(header)):
+                    if idx2 == 0:
+                        yaml_out_file.write(f'- {row_data[idx2]}\n')
+                    else:
+                        yaml_out_file.write(f'    {header[idx2]}: {row_data[idx2]}\n')
+
 
 
 
