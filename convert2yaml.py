@@ -4,20 +4,18 @@ import re
 import csv
 import time
 
-# Things to test for:
+# Things to keep in mind:
 # [x] verify that there is 2 inputs given at command line, if not, specify you need 2 required
 # [x] verify first path is valid
 # [x] verify second path is valid
 # [x] each path must be specific '/'
-# [ ] understand yaml file structure
-# [ ] convert csv to yaml
+# [x] understand yaml file structure
+# [x] convert csv to yaml
 # [ ] convert xlsv to yaml
 # [ ] write automated tests/unit testing to test functions below
 # [ ] create functions instead of having everything in the main script
 
-
 print('\n\n======  CSV/XLSX to YAML converter   ====== ')
-
 
 # Ensure 2 arguments are passed into program
 if len(sys.argv) < 3:
@@ -28,12 +26,12 @@ if len(sys.argv) < 3:
     sys.exit()
 
 # Verify the paths that were passed are valid:
-# (sys.arg[] parameter 1 is path to csv input file, parameter 2 is path + filename to output yaml file to)
+# (arg[1] is path/filename to csv input; arg[2] is path/filename to output yml file
 if not (os.path.isfile(sys.argv[1])):
     print(sys.argv[1], ' is not a valid filename.\nQuietly terminating myself...')
     sys.exit()
 
-out_path, out_file = os.path.split(sys.argv[2])  # head will return path only, tail will return filename from given path
+out_path, out_file = os.path.split(sys.argv[2])  # head returns path, tail returns filename
 yaml_out_path = os.path.isdir(out_path)
 
 if not(os.path.isdir(out_path)):
@@ -81,42 +79,21 @@ with open(sys.argv[1], mode='r') as csv_file:
                       f'should be {len(header)} values. *********')
                 print('Continuing to process data')
                 print(f'processing {row_data}')
-                yaml_out_file.write(''.join(row_data) + '\n')
+
+                for idx2 in range(len(row_data)):
+                    if idx2 == 0:
+                        yaml_out_file.write(f'- {row_data[idx2]}\n')
+                    else:
+                        yaml_out_file.write(f'    {header[idx2]}: {row_data[idx2]}\n')
             else:
                 print(f'processing {row_data}')
-                #print(len(row_data))
-                #yaml_out_file.write(''.join(row_data) + '\n')
                 for idx2 in range(len(header)):
                     if idx2 == 0:
                         yaml_out_file.write(f'- {row_data[idx2]}\n')
                     else:
                         yaml_out_file.write(f'    {header[idx2]}: {row_data[idx2]}\n')
 
-
-
-
-
-
     end_time = time.time()
     time_elapsed = (end_time - start_time)
+
     print(f'Data processing completed in {round(time_elapsed * 1000, 3)} ms.')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
