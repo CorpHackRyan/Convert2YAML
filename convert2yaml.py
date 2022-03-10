@@ -2,6 +2,7 @@ import os.path
 import sys
 import re
 import csv
+import time
 
 # Things to test for:
 # [x] verify that there is 2 inputs given at command line, if not, specify you need 2 required
@@ -11,7 +12,9 @@ import csv
 # [ ] understand yaml file structure
 # [ ] convert csv to yaml
 # [ ] convert xlsv to yaml
-# [ ] write automated tests/unit testing
+# [ ] write automated tests/unit testing to test functions below
+# [ ] create functions instead of having everything in the main script
+
 
 print('\n\n======  CSV/XLSX to YAML converter   ====== ')
 
@@ -45,9 +48,8 @@ if match is not None:
     print(match.group(), 'is not a valid character for a filename.\nQuietly terminating myself...')
     sys.exit()
 
-print(f'\nInput  file given: {sys.argv[1]} exists and will be used for processing.')
-print(f'Output file given: {out_file} is a valid file name and will be written to: {out_path}\n')
-
+print(f'\nInput file given:        {sys.argv[1]}  - VALID INPUT')
+print(f'Output file path valid:  {out_file} - VALID INPUT & will be written to: {out_path}')
 
 # Some YAML references below:
 # https://circleci.com/blog/what-is-yaml-a-beginner-s-guide/
@@ -57,21 +59,45 @@ print(f'Output file given: {out_file} is a valid file name and will be written t
 # Notes about YAML
 # YAML doesn't allow TAB chars, spaces only
 
+# Open csv input file for reading & get headers
 with open(sys.argv[1], mode='r') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     header = next(csv_reader)
+    print(f'Total column headers:    {len(header)}')  # total sols
 
-    print(header) #col headers
-    print(len(header)) #total sols
-
+    # Read data contents of csv file into memory
     each_row = []
+    start_time = time.time()
 
     for row in csv_reader:
-        #print(f'{", ".join(row)}')
-        #each_row.append(row)
-        #print(each_row)
-        print(f'{row[0]} {row[1]}')
-        #print(len(each_row))
+        each_row.append(row)
+    print(f'Total record entries:    {len(each_row)}\n')
+
+    with open(sys.argv[2], mode='w') as yaml_out_file:
+        for idx, row_data in enumerate(each_row):
+            if len(row_data) != len(header):
+                print(f'******** Potential error or data missing in row {idx+1}. Only {len(row_data)} values found - '
+                      f'should be {len(header)} values. *********')
+                print('Continuing to process data')
+                print(f'processing {row_data}')
+                yaml_out_file.write(''.join(row_data) + '\n')
+            else:
+                print(f'processing {row_data}')
+                #print(len(row_data))
+                yaml_out_file.write(''.join(row_data) + '\n')
+
+
+
+
+
+    end_time = time.time()
+    time_elapsed = (end_time - start_time)
+    print(f'Data processing completed in {round(time_elapsed * 1000, 3)} ms.')
+
+
+
+
+
 
 
 
