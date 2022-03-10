@@ -1,4 +1,4 @@
-.CSV & .XLSX to YAML converter
+CSV/XLSX to YAML converter
 
 ## Table of contents
 * [General info](#general-info)
@@ -6,7 +6,9 @@
 * [Setup](#setup)
 
 ## General info:
-Simple command line tool that takes exactly 2 arguments from the command line and processes those files. The input file must be a valid .CSV file. The output file must contain a valid path and valid file name. 
+Simple command line tool that requires two arguments. The first argument should be the CSV file that is being fed into
+into the program. The second argument should be a valid path and filename. If no path is supplied for either, the present
+working directory becomes the default working path. It will then analyze the CSV file, process and convert this data to a YAML format. 
 
 ## How to use
 From the command line: <br>
@@ -14,7 +16,7 @@ From the command line: <br>
 
 
 ## Setup
-This script uses Pythons standard libraries that are bundled with the core Python distribution. You will need at least Python 3.9 installed on your system to ensure compatability. 
+This script uses Pythons standard libraries that are bundled with the core Python distribution. You will need at least Python 3.9 installed on your operating system to ensure compatability. 
 <br><br>
 <i>Windows install:</i>
 <a href="https://www.tutorialspoint.com/how-to-install-python-in-windows">How to install on Windows</a>
