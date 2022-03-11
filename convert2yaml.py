@@ -6,7 +6,7 @@ import time
 
 
 def cuboid_volume():
-    return 1
+    return 2
 
 
 # Things to keep in mind:
