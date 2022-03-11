@@ -4,6 +4,7 @@ CSV/XLSX to YAML converter
 * [General info](#general-info)
 * [How to use](#how-to-use)
 * [Setup](#setup)
+* [Output](#output)
 
 ## General info:
 Simple command line tool that requires two arguments. The first argument should be the CSV file that is being fed into
@@ -24,4 +25,7 @@ This script uses Pythons standard libraries that are bundled with the core Pytho
 <i>Linux install:</i>
 <a href="https://www.python.org/downloads/release/python-3910/">Source</a>
 
-
+## Output
+![Initial CSV input file](./assets/csv-before.png)
+![Command line output](./assets/cli.png)
+![Final YAML output](./assets/yaml_final.png)
