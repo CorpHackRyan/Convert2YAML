@@ -70,14 +70,14 @@ def process_csv():
 
                     for idx2 in range(len(row_data)):
                         if idx2 == 0:
-                            yaml_out_file.write(f'- {row_data[idx2]}\n')
+                            yaml_out_file.write(f'- {row_data[idx2]}:\n')
                         else:
                             yaml_out_file.write(f'    {header[idx2]}: {row_data[idx2]}\n')
                 else:
                     print(f'processing {row_data}')
                     for idx2 in range(len(header)):
                         if idx2 == 0:
-                            yaml_out_file.write(f'- {row_data[idx2]}\n')
+                            yaml_out_file.write(f'- {row_data[idx2]}:\n')
                         else:
                             yaml_out_file.write(f'    {header[idx2]}: {row_data[idx2]}\n')
 
