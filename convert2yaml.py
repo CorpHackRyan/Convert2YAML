@@ -4,6 +4,11 @@ import re
 import csv
 import time
 
+
+def cuboid_volume():
+    return 1
+
+
 # Things to keep in mind:
 # [x] verify that there is 2 inputs given at command line, if not, specify you need 2 required
 # [x] verify first path is valid
@@ -14,6 +19,8 @@ import time
 # [ ] convert xlsv to yaml
 # [ ] write automated tests/unit testing to test functions below
 # [ ] create functions instead of having everything in the main script
+# [ ] for yaml out path/file, if only filename is given, use pwd
+# [ ] for ones with data containing nothing, we still need to print the header with blank data
 
 print('\n\n======  CSV/XLSX to YAML converter   ====== ')
 
@@ -34,7 +41,7 @@ if not (os.path.isfile(sys.argv[1])):
 out_path, out_file = os.path.split(sys.argv[2])  # head returns path, tail returns filename
 yaml_out_path = os.path.isdir(out_path)
 
-if not(os.path.isdir(out_path)):
+if not (os.path.isdir(out_path)):
     print(out_path, ' is not a valid path.\nQuietly terminating myself...')
     sys.exit()
 
@@ -75,7 +82,7 @@ with open(sys.argv[1], mode='r') as csv_file:
         yaml_out_file.write('---\n')
         for idx, row_data in enumerate(each_row):
             if len(row_data) != len(header):
-                print(f'******** Potential error or data missing in row {idx+1}. Only {len(row_data)} values found - '
+                print(f'******** Potential error or data missing in row {idx + 1}. Only {len(row_data)} values found - '
                       f'should be {len(header)} values. *********')
                 print('Continuing to process data')
                 print(f'processing {row_data}')
