@@ -2,4 +2,4 @@ Asset ID,Asset Name,Asset Code,App Short Name,AWS Account No,family/BU,sys-cloud
 MSR06363,Multifamily Negotiated Transactions,GOU,gou,74307301683,mfbu,gou-cloud,gou-app,prod-mfbu,Yes,No
 MSR00713,QRM-AWS,FRF,frf,00023458102,cmdl,frf-cloud,frf-app,prod-cmdl,No,No
 MSR04728,MF Exit Rate Analysis,GDL,mfera,74307301683,mfbu,mfera-cloud,mfera-app,prod-mfbu,No,No
-MSR04632,DUS Now – Common Services,GGS,mfdncs,74307301684,mfbu,mfndcs-cloud,mfdncs-app,prod-mfbu,No
+MSR04632,DUS Now – Common Services,GGS,mfdncs,74307301684,mfbu,mfndcs-cloud,mfdncs-app,prod-mfbu,No,Yes
