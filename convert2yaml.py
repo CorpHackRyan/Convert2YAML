@@ -42,7 +42,7 @@ def verify_fname_valid_chars(ofile):
 
 
 def process_xlsx():
-    None
+    print('Process XLSX code goes here')
 
 
 def process_csv():
@@ -89,28 +89,29 @@ def process_csv():
         print(f'\nData processing completed in {round(time_elapsed * 1000, 3)} ms.\n')
 
 
-print('\n\n======  CSV/XLSX to YAML converter   ====== ')
+if __name__ == "__main__":
+    print('\n\n======  CSV/XLSX to YAML converter   ====== ')
 
-verify_num_args_passed()
-verify_paths_valid()
+    verify_num_args_passed()
+    verify_paths_valid()
 
-out_path, out_file = os.path.split(sys.argv[2])  # head returns path, tail returns filename
-yaml_out_path = os.path.isdir(out_path)
+    out_path, out_file = os.path.split(sys.argv[2])  # head returns path, tail returns filename
+    yaml_out_path = os.path.isdir(out_path)
 
-verify_out_path(out_path)
-verify_fname_valid_chars(out_file)
+    verify_out_path(out_path)
+    verify_fname_valid_chars(out_file)
 
-print(f'Input file given:        {sys.argv[1]}  - VALID INPUT')
-print(f'Output file path valid:  {out_file}     - VALID INPUT & will be written to: {out_path}')
+    print(f'Input file given:        {sys.argv[1]}  - VALID INPUT')
+    print(f'Output file path valid:  {out_file}     - VALID INPUT & will be written to: {out_path}')
 
-input_type = os.path.splitext(sys.argv[1])[1]
+    input_type = os.path.splitext(sys.argv[1])[1]
 
-if input_type == '.csv':
-    process_csv()
-elif input_type == '.xlsx':
-    process_xlsx()
-else:
-    print(f'{input_type} is not a valid extension and the file {sys.argv[1]} cannot be processed.')
-    print('Quietly terminating myself...')
-    sys.exit()
+    if input_type == '.csv':
+        process_csv()
+    elif input_type == '.xlsx':
+        process_xlsx()
+    else:
+        print(f'{input_type} is not a valid extension and the file {sys.argv[1]} cannot be processed.')
+        print('Quietly terminating myself...')
+        sys.exit()
 

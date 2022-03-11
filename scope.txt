@@ -12,11 +12,12 @@ HOURS LOGGED:
 # [x] each path must be specific '/'
 # [x] refresher on yaml file structure
 # [x] convert csv to yaml
-# [ ] write unit tests
+# [x] create functions instead of having everything in the main script
+# [x] add __name__ for ideal execution
+# [ ] write unit tests (major issues with pytest - i believe virtual environment related)
 # [ ] for ones with data containing nothing, we still need to print the header with blank data
-# [ ] convert xlsv to yaml
-# [ ] enable automated tests with github actions
-# [ ] create functions instead of having everything in the main script
+# [ ] convert xlsv to yaml method completion
+# [ ] enable automated tests with github actions (add pytest to GH actions yaml file)
 # [ ] for yaml out path/file, if only filename is given, use pwd
 # [ ] check if .yml or .yaml extension is given as output file, if not, append to output.
 
