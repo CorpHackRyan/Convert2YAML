@@ -25,6 +25,10 @@ This script uses Pythons standard libraries that are bundled with the core Pytho
 <i>Linux install:</i>
 <a href="https://www.python.org/downloads/release/python-3910/">Source</a>
 
+Additionally, you will be required to have the 'openpyxl' library installed to run this script. 
+Once you have Python installed, from your terminal run: ```pip install pyopenxl```
+This will install the library into your system. A further detailed explanation can be found <a href="https://www.softwaretestinghelp.com/python-openpyxl-tutorial/#How_To_Install_Openpyxl">here.</a>
+
 ## Output
 Initial CSV data input file given
 ![Initial CSV input file](./assets/csv-before.png)

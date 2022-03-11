@@ -1,8 +1,9 @@
-import os.path
-import sys
-import re
 import csv
+import os.path
+import re
+import sys
 import time
+import openpyxl
 
 
 def verify_num_args_passed():
@@ -63,9 +64,8 @@ def process_csv():
             for idx, row_data in enumerate(each_row):
                 if len(row_data) != len(header):
                     print(
-                        f'******** Potential error or data missing in row {idx + 1}. Only {len(row_data)} values found - '
-                        f'should be {len(header)} values. *********')
-                    print('Continuing to process data')
+                        f'******** Potential error or data missing in row {idx + 1}. Only {len(row_data)} '
+                        f'values found - should be {len(header)} values. *********\nContinuing to process data')
                     print(f'processing {row_data}')
 
                     for idx2 in range(len(row_data)):
@@ -81,10 +81,12 @@ def process_csv():
                         else:
                             yaml_out_file.write(f'    {header[idx2]}: {row_data[idx2]}\n')
 
+            yaml_out_file.write('...')
+
         end_time = time.time()
         time_elapsed = (end_time - start_time)
 
-        print(f'Data processing completed in {round(time_elapsed * 1000, 3)} ms.')
+        print(f'\nData processing completed in {round(time_elapsed * 1000, 3)} ms.\n')
 
 
 print('\n\n======  CSV/XLSX to YAML converter   ====== ')
@@ -98,7 +100,7 @@ yaml_out_path = os.path.isdir(out_path)
 verify_out_path(out_path)
 verify_fname_valid_chars(out_file)
 
-print(f'\nInput file given:        {sys.argv[1]}  - VALID INPUT')
+print(f'Input file given:        {sys.argv[1]}  - VALID INPUT')
 print(f'Output file path valid:  {out_file}     - VALID INPUT & will be written to: {out_path}')
 
 input_type = os.path.splitext(sys.argv[1])[1]
