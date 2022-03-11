@@ -26,6 +26,11 @@ This script uses Pythons standard libraries that are bundled with the core Pytho
 <a href="https://www.python.org/downloads/release/python-3910/">Source</a>
 
 ## Output
+Initial CSV data input file given
 ![Initial CSV input file](./assets/csv-before.png)
+
+Command line execution with results
 ![Command line output](./assets/cli.png)
+
+Final conversion to YAML and formatting
 ![Final YAML output](./assets/yaml_final.png)
