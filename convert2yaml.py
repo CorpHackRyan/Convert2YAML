@@ -86,7 +86,6 @@ def process_csv():
         print(f'\nData processing completed in {round(time_elapsed * 1000, 3)} ms.\n')
 
 
-
 def process_xlsx():
     wb = openpyxl.load_workbook(sys.argv[1])
 
@@ -108,7 +107,7 @@ def process_xlsx():
             else:
                 header.append(cell.value)
 
-    # Process rows
+    # Process row data
     with open(sys.argv[2], mode='w') as yaml_out_file:
         yaml_out_file.write('---\n')
 
@@ -120,7 +119,6 @@ def process_xlsx():
                 else:
                     print(header[idx], row_values[idx].value)
                     data = f'    {header[idx]}: {row_values[idx].value}\n'
-                    #yaml_out_file.write((header[idx], str(row_values[idx].value)) + '\n')
                     yaml_out_file.write(data)
 
         yaml_out_file.write('...')
@@ -156,4 +154,3 @@ if __name__ == "__main__":
         print(f'{input_type} is not a valid extension and the file {sys.argv[1]} cannot be processed.')
         print('Quietly terminating myself...')
         sys.exit()
-
