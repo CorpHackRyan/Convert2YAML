@@ -6,6 +6,10 @@ import time
 import openpyxl
 
 
+def junk():
+    return 1
+
+
 def verify_num_args_passed():
     # Ensure 2 arguments are passed into program
     if len(sys.argv) < 3:
