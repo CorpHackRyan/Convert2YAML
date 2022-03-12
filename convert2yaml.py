@@ -44,22 +44,38 @@ def verify_fname_valid_chars(ofile):
 def process_xlsx():
     wb = openpyxl.load_workbook(sys.argv[1])
 
-    # No specification given for which sheet to use, so defaulting to first sheet in excel file
-    # sheet = wb.sheetnames[0]
+    # No specification given for which sheet to use, so defaulting to first sheet in Excel file
     sheet = wb.worksheets[0]
+    row_count = sheet.max_row - 1
+    col_count = sheet.max_column - 1
 
-    row_count = sheet.max_row
-    col_count = sheet.max_column
-    print(f'Total column headers:    {col_count}\nTotal record entries:    {row_count - 1}\n')
+    print(f'Total column headers:    {col_count}\nTotal record entries:    {row_count}\n')
 
     header = []
-    for row in sheet.iter_rows(max_row=1):
-        for cell in row:
-            if cell.value is None:  # for whatever reason, openpyxl iterates max + 1 when iter_rows() is ran
+    start_time = time.time()
+
+    for row_header in sheet.iter_rows(max_row=1):
+        for cell in row_header:
+            if cell.value is None:  # for whatever reason, openpyxl iterates max + 1 when iter_rows() is run
                 break
             else:
                 header.append(cell.value)
                 print(cell.value)
+
+    with open(sys.argv[2], mode='w') as yaml_out_file:
+        yaml_out_file.write('---\n')
+
+        for row_values in sheet.iter_rows(max_col=col_count, min_row=2):
+            for cell in row_values:
+                print(cell.value)
+                yaml_out_file.write(str(cell.value) + '\n')
+
+        yaml_out_file.write('...')
+
+    end_time = time.time()
+    time_elapsed = (end_time - start_time)
+
+    print(f'\nData processing completed in {round(time_elapsed * 1000, 3)} ms.\n')
 
 
 def process_csv():
