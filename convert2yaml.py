@@ -42,7 +42,27 @@ def verify_fname_valid_chars(ofile):
 
 
 def process_xlsx():
-    print('Process XLSX code goes here')
+    wb = openpyxl.load_workbook(sys.argv[1])
+
+    # No specification given for which sheet to use, so defaulting to first sheet in excel file
+    # sheet = wb.sheetnames[0]
+    sheet = wb.worksheets[0]
+
+    row_count = sheet.max_row
+    col_count = sheet.max_column
+    print(f'row count: {row_count}, col count {col_count}')
+
+    header = []
+
+    for row in sheet.iter_rows(max_row=1):
+        for cell in row:
+            if cell.value is None:
+                break
+            else:
+                header.append(cell.value)
+                print(cell.value)
+
+    print(len(header))
 
 
 def process_csv():

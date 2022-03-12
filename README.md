@@ -26,7 +26,12 @@ This will install the library into your system. A further detailed explanation c
 
 ## How to run
 From the command line: <br>
+
+To use a CSV file as input:<br>
 ```python convert2yaml.py {/path/to/name_of_csv_input_file.csv} {/path/to/output_yaml_file.yaml}```<br>
+<br>
+To use an XLSX file as input:<br>
+```python convert2yaml.py {/path/to/name_of_csv_input_file.xlsx} {/path/to/output_yaml_file.yaml}```<br>
 
 ## Output
 Initial CSV data input file given
