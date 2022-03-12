@@ -50,19 +50,16 @@ def process_xlsx():
 
     row_count = sheet.max_row
     col_count = sheet.max_column
-    print(f'row count: {row_count}, col count {col_count}')
+    print(f'Total column headers:    {col_count}\nTotal record entries:    {row_count - 1}\n')
 
     header = []
-
     for row in sheet.iter_rows(max_row=1):
         for cell in row:
-            if cell.value is None:
+            if cell.value is None:  # for whatever reason, openpyxl iterates max + 1 when iter_rows() is ran
                 break
             else:
                 header.append(cell.value)
                 print(cell.value)
-
-    print(len(header))
 
 
 def process_csv():
