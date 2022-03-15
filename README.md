@@ -35,10 +35,10 @@ To use an XLSX file as input:<br>
 
 ## Output
 Initial CSV data input file given
-![Initial CSV input file](./assets/csv-before.png)
+![Initial CSV input file](assets/csv-before.png)
 
 Command line execution with results
-![Command line output](./assets/cli.png)
+![Command line output](assets/cli.png)
 
 Final conversion to YAML and formatting
-![Final YAML output](./assets/yaml_final.png)
+![Final YAML output](assets/yaml_final.png)
