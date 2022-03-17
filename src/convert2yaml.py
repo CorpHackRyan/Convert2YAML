@@ -4,28 +4,40 @@ import re
 import sys
 import time
 import openpyxl
+# use the yaml library
+import yaml
 
 
 def junk():
     return 1
 
 
-def verify_num_args_passed():
+# data-oriented programming
+# - figure out your inputs and outputs
+# - try to make your functions reusable (for yourself and other people)
+#    - no sys.exit()
+#    - try not to many unnecessary changes that might prevent re-usability
+# - don't mix input/output with your processing (hurts testing, and makes it hard to re-use)
+def verify_num_args_passed(args):
     # Ensure 2 arguments are passed into program
-    if len(sys.argv) < 3:
+    if args is None or len(args) < 3:
         print('\n***ERROR*** 2 arguments are required.\n')
         print('required: Argument 1: the path to the input CSV file itself')
         print('required: Argument 2: the path to the YAML output file\n')
         print('Quietly terminating myself.....')
-        sys.exit()
+        return False
+    else:
+        return True
 
 
-def verify_paths_valid():
+def verify_paths_valid(args):
     # Verify the paths that were passed are valid:
     # (arg[1] is path/filename to csv input; arg[2] is path/filename to output yml file
-    if not (os.path.isfile(sys.argv[1])):
+    if not (os.path.isfile(args[1])):
         print(sys.argv[1], ' filename does not exist.\nQuietly terminating myself...')
-        sys.exit()
+        return False
+    else:
+        return True
 
 
 def verify_out_path(path):
@@ -45,24 +57,36 @@ def verify_fname_valid_chars(ofile):
         sys.exit()
 
 
-def process_csv():
+# - two inputs
+#   - input CSV path
+#   - output YAML path
+#   - delimiter
+
+
+# DOP: this should actually return a list of dictionaries
+#      a separate function should dump the list of dicts to a file
+
+# side effects are stuff that change the "real world", like files or databases
+# prefer many functions that are "pure" (i.e., don't change the real world), with a
+# few functions that do
+def process_csv(delimiter=','):
     with open(sys.argv[1], mode='r') as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter=',')
+        csv_reader = csv.reader(csv_file, delimiter)
         header = next(csv_reader)
         print(f'Total column headers:    {len(header)}')  # total sols
 
         # Read data contents of csv file into memory
-        each_row = []
+        each_rows = []
         start_time = time.time()
 
         for row in csv_reader:
-            each_row.append(row)
-        print(f'Total record entries:    {len(each_row)}\n')
+            each_rows.append(row)
+        print(f'Total record entries:    {len(each_rows)}\n')
 
         with open(sys.argv[2], mode='w') as yaml_out_file:
             yaml_out_file.write('---\n')
 
-            for idx, row_data in enumerate(each_row):
+            for idx, row_data in enumerate(each_rows):
                 if len(row_data) != len(header):
                     print(
                         f'******** Potential error or data missing in row {idx + 1}. Only {len(row_data)} '
@@ -136,8 +160,15 @@ def process_xlsx():
 if __name__ == "__main__":
     print('\n\n======  CSV/XLSX to YAML converter   ====== ')
 
-    verify_num_args_passed()
-    verify_paths_valid()
+    result_num_args_passed = verify_num_args_passed(sys.argv)
+
+    if result_num_args_passed is False:
+        sys.exit()
+
+    result_paths_valid = verify_paths_valid(sys.argv)
+
+    if result_paths_valid is False:
+        sys.exit()
 
     out_path, out_file = os.path.split(sys.argv[2])  # head returns path, tail returns filename
     yaml_out_path = os.path.isdir(out_path)
